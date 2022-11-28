@@ -2,16 +2,19 @@ var app;
 var renderer;
 var loader;
 
+var winSize = {width:360, height:740};
+var winRatio = winSize.width/winSize.height;
+
 app = new PIXI.Application(
     {
-        width:window.innerWidth,
-        height:window.innerHeight,
+        width:winSize.width,
+        height:winSize.height,
         backgroundColor: 0xAAAAAA,
         autoResize:true
     }
 )
 app.resizeTo = window;
-renderer = PIXI.autoDetectRenderer(window.innerWidth, window.innerHeight);
+renderer = PIXI.autoDetectRenderer(winSize[0], winSize[1]);
 
 createjs.Ticker.setFPS(app.ticker.FPS);
 

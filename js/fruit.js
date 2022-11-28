@@ -29,23 +29,36 @@ class Fruit
         gameStage.addChild(this.rightSprite);
 
         var isLeftSpawn = this.randomRange(0, 100) > 49;
-        var horizontalTargetPos = isLeftSpawn ? window.innerWidth + 300 : -300;
+        var horizontalTargetPos = isLeftSpawn ? winSize.width + 300 : -300;
 
-        this.fruitSprite.x = isLeftSpawn ? 0 : window.innerWidth;
-        this.fruitSprite.y = window.innerHeight + 200;
+        this.fruitSprite.x = isLeftSpawn ? 0 : winSize.width;
+        this.fruitSprite.y = winSize.height + 200;
         gameStage.addChild(this.fruitSprite);
 
         createjs.Tween.get(this.fruitSprite.position).to({y: 200}, 1200, createjs.Ease.sineOut)
-        .to({y:window.innerHeight + 200}, 1200, createjs.Ease.sineIn);
+        .to({y:winSize.height + 200}, 1200, createjs.Ease.sineIn);
 
         createjs.Tween.get(this.fruitSprite.position).to({x: horizontalTargetPos}, 2400, createjs.Ease.sineIn);
 
         createjs.Tween.get(this.fruitSprite).to({angle:this.randomRange(-180, 180)}, 3000, createjs.Ease.sineIn);
 
+        //for desktop
+        this.isSlicing = false;
+
         this.fruitSprite.interactive = true;
         this.fruitSprite.cursor = 'pointer';
         this.fruitSprite.addListener('touchmove', ()=>{this.onFruitSlice();});
+        gameStage.addListener('pointerdown', ()=>{this.isSlicing = true;});
+        gameStage.addListener('pointerup', ()=>{this.isSlicing = false;});
+
+        this.fruitSprite.addListener('pointermove', ()=>{
+            if(this.isSlicing)
+            {
+                this.onFruitSlice();
+            }
+        });  
     }
+
 
 
     randomRange(min, max)
@@ -68,8 +81,8 @@ class Fruit
         this.leftSprite.visible = true;
         this.rightSprite.visible = true;
 
-        createjs.Tween.get(this.leftSprite.position).to({y:window.innerHeight+200}, 900, createjs.Ease.backIn);
-        createjs.Tween.get(this.rightSprite.position).to({y:window.innerHeight+200}, 800, createjs.Ease.backIn);
+        createjs.Tween.get(this.leftSprite.position).to({y:winSize.height+200}, 900, createjs.Ease.backIn);
+        createjs.Tween.get(this.rightSprite.position).to({y:winSize.height+200}, 800, createjs.Ease.backIn);
 
         createjs.Tween.get(this.leftSprite).to({angle:-180}, this.randomRange(1600, 2500), createjs.Ease.sineIn);
         createjs.Tween.get(this.rightSprite).to({angle:180}, this.randomRange(1600, 2500), createjs.Ease.sineIn);

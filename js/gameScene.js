@@ -5,6 +5,8 @@ class GameScene
     {
         this.gameStage = new PIXI.Container();
         this.gameStage.interactive = true;
+        this.gameStage.width = winSize.width;
+        this.gameStage.height = winSize.height;
         this.gameStage.hitArea = app.screen;
         GameContainer.addChild(this.gameStage);
 
@@ -27,7 +29,7 @@ class GameScene
 
         this.timerText = new PIXI.Text('0:' + this.gameTimer, menuTextStyle);
         this.timerText.scale.set(2, 2);
-        this.timerText.position.set(window.innerWidth - this.timerText.width - 10, 10);
+        this.timerText.position.set(winSize.width - this.timerText.width - 10, 10);
         this.gameStage.addChild(this.timerText);
 
         
@@ -73,9 +75,9 @@ class GameScene
 
         var gameOverPanel = PIXI.Sprite.from(PIXI.Assets.get('BoardTexture'));
         gameOverPanel.anchor.set(0.5, 0.5);
-        gameOverPanel.width = window.innerWidth * 0.75;
-        gameOverPanel.height = window.innerHeight * 0.5;
-        gameOverPanel.position.set(window.innerWidth/2, window.innerHeight/2);
+        gameOverPanel.width = winSize.width * 0.75;
+        gameOverPanel.height = winSize.height * 0.5;
+        gameOverPanel.position.set(winSize.width/2, winSize.height/2);
         this.gameStage.addChild(gameOverPanel);
 
         var finalScoreText = new PIXI.Text('Game Over!\nYour final score:\n' + this.score, menuTextStyle);
@@ -86,6 +88,13 @@ class GameScene
 
     Update(delta)
     {
+        for(var i = 0; i < this.gameStage.children.length; i++)
+        {
+            var bounds = this.gameStage.children[i].getBounds();
+            this.gameStage.children[i].renderable = bounds.x >= -200 && bounds.y >= -200 &&
+            bounds.x + bounds.width * 0.5 <= winSize.width && bounds.y+bounds.height * 0.5 <= winSize.height;
+        }
+
         if(this.isGameOver)
         {
             return;
