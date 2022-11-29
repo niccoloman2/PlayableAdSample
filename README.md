@@ -1,3 +1,10 @@
-Lorem Khaled Ipsum is a major key to success. Give thanks to the most high. Fan luv. Cloth talk. They don’t want us to win. Eliptical talk. Cloth talk. Cloth talk. Surround yourself with angels. A major key, never panic. Don’t panic, when it gets crazy and rough, don’t panic, stay calm. Give thanks to the most high. You see the hedges, how I got it shaped up? It’s important to shape up your hedges, it’s like getting a haircut, stay fresh. Fan luv. Always remember in the jungle there’s a lot of they in there, after you overcome they, you will make it to paradise.
+To run the project, just host the static files on an http server.
 
-Mogul talk. Life is what you make it, so let’s make it. They key is to have every key, the key to open every door. Stay focused. The ladies always say Khaled you smell good, I use no cologne. Cocoa butter is the key. I’m giving you cloth talk, cloth. Special cloth alert, cut from a special cloth. Hammock talk come soon. They don’t want us to win. I’m giving you cloth talk, cloth. Special cloth alert, cut from a special cloth. In life you have to take the trash out, if you have trash in your life, take it out, throw it away, get rid of it, major key.
+You could do this if you have node and npm installed by running:
+
+npm install http-server -g
+
+And then:
+
+cd <project directory>
+http-server

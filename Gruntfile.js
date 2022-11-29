@@ -4,7 +4,8 @@ module.exports = function(grunt)
     grunt.initConfig({
         concat: {
             js: {
-                src: ['js/*.js'],
+                src: ['js/pixi.min.js', 'js/tweenjs.min.js', 'js/init.js', 'js/textInit.js', 'js/menu.js',
+            'js/fruit.js', 'js/gameScene.js'],
                 dest: 'build/scripts.js'
             }
         },
@@ -42,6 +43,6 @@ module.exports = function(grunt)
     grunt.loadNpmTasks('grunt-contrib-watch');
 
     // Register tasks
-    grunt.registerTask('serve', ['concat', 'connect:static', 'watch']);
+    grunt.registerTask('serve', ['connect:static', 'watch']);
     grunt.registerTask('build', ['concat', 'uglify']);
 };
